@@ -1,8 +1,6 @@
 package com.ayush.product.productmanager.security.auth;
 
-/**
- * Created by fanjin on 2017-10-09.
- */
+
 public class JwtAuthenticationRequest {
     private String username;
     private String password;

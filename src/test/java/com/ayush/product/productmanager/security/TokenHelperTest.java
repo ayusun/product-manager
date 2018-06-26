@@ -26,9 +26,7 @@ public class TokenHelperTest{
 
     @Before
     public void setup(){
-        when(securityProperty.getAppName()).thenReturn("product-manager");
         when(securityProperty.getSecret()).thenReturn("queenvictoria");
-        when(securityProperty.getExpiresIn()).thenReturn(300);
         when(securityProperty.getAuthHeader()).thenReturn("authorization");
     }
 
