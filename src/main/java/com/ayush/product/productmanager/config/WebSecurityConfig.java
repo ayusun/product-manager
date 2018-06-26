@@ -7,6 +7,7 @@ import com.ayush.product.productmanager.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -20,13 +21,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
-/**
- * Created by fan.jin on 2016-10-19.
- */
+
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@Profile("!dev")
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
@@ -56,6 +56,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     TokenHelper tokenHelper;
 
     @Override
+
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .sessionManagement().sessionCreationPolicy( SessionCreationPolicy.STATELESS ).and()

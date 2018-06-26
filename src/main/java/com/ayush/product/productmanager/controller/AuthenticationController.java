@@ -6,6 +6,7 @@ import com.ayush.product.productmanager.security.TokenHelper;
 import com.ayush.product.productmanager.security.auth.JwtAuthenticationRequest;
 import com.ayush.product.productmanager.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -26,12 +27,10 @@ import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by fan.jin on 2017-05-10.
- */
 
 @RestController
 @RequestMapping( value = "/auth", produces = MediaType.APPLICATION_JSON_VALUE )
+@Profile("prod")
 public class AuthenticationController {
 
     @Autowired
