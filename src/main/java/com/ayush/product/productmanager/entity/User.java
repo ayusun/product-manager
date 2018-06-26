@@ -1,6 +1,7 @@
 package com.ayush.product.productmanager.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 import org.joda.time.DateTime;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,9 +11,6 @@ import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * Created by fan.jin on 2016-10-15.
- */
 
 @Entity
 @Table(name="USERS")
@@ -38,12 +36,6 @@ public class User implements UserDetails {
 
     @Column(name = "email")
     private String email;
-
-    @Column(name = "phone_number")
-    private String phoneNumber;
-
-    @Column(name = "enabled")
-    private boolean enabled;
 
     @Column(name = "last_password_reset_date")
     private Timestamp lastPasswordResetDate;
@@ -113,24 +105,7 @@ public class User implements UserDetails {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public Timestamp getLastPasswordResetDate() {
+   public Timestamp getLastPasswordResetDate() {
         return lastPasswordResetDate;
     }
 
@@ -153,6 +128,11 @@ public class User implements UserDetails {
     @JsonIgnore
     @Override
     public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
         return true;
     }
 
