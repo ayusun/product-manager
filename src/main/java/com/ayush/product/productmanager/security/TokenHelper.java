@@ -52,23 +52,6 @@ public class TokenHelper {
         return issueAt;
     }
 
-    public String refreshToken(String token) {
-        String refreshedToken;
-        Date a = new Date();
-        try {
-            final Claims claims = this.getAllClaimsFromToken(token);
-            claims.setIssuedAt(a);
-            refreshedToken = Jwts.builder()
-                .setClaims(claims)
-                .setExpiration(generateExpirationDate())
-                .signWith( SIGNATURE_ALGORITHM, securityProperty.getSecret() )
-                .compact();
-        } catch (Exception e) {
-            refreshedToken = null;
-        }
-        return refreshedToken;
-    }
-
     public String generateToken(String username) {
         String audience = generateAudience();
         return Jwts.builder()
@@ -87,7 +70,7 @@ public class TokenHelper {
 
     }
 
-    private Claims getAllClaimsFromToken(String token) {
+   private Claims getAllClaimsFromToken(String token) {
         Claims claims;
         try {
             claims = Jwts.parser()
@@ -112,11 +95,9 @@ public class TokenHelper {
     public Boolean validateToken(String token, UserDetails userDetails) {
         UserEntity user = (UserEntity) userDetails;
         final String username = getUsernameFromToken(token);
-        final Date created = getIssuedAtDateFromToken(token);
         return (
                 username != null &&
-                username.equals(userDetails.getUsername()) &&
-                        !isCreatedBeforeLastPasswordReset(created, user.getLastPasswordResetDate())
+                username.equals(userDetails.getUsername())
         );
     }
 

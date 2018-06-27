@@ -2,8 +2,6 @@ package com.ayush.product.productmanager.security.auth;
 
 import com.ayush.product.productmanager.security.TokenHelper;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,6 +15,9 @@ import java.io.IOException;
 
 /**
  * Filter that will Authenticate the request.
+ *
+ * TODO 1) Add BlackListedTokens 2) Add concept of Refresh tokens
+ *
  */
 @Slf4j
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
@@ -41,6 +42,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
         String username;
         String authToken = tokenHelper.getToken(request);
 
+        //TODO in future add a feature to query blacklisted tokens and fail the request if blacklisted
         if (authToken != null) {
             // get username from token
             username = tokenHelper.getUsernameFromToken(authToken);
