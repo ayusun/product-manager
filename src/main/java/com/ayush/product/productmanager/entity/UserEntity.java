@@ -1,7 +1,6 @@
 package com.ayush.product.productmanager.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
 import org.joda.time.DateTime;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,7 +13,7 @@ import java.util.List;
 
 @Entity
 @Table(name="USERS")
-public class User implements UserDetails {
+public class UserEntity implements UserDetails {
 
     @Id
     @Column(name = "id")
@@ -44,7 +43,7 @@ public class User implements UserDetails {
     @JoinTable(name = "user_authority",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id"))
-    private List<Authority> authorities;
+    private List<AuthorityEntity> authorities;
 
     public Long getId() {
         return id;
@@ -88,7 +87,7 @@ public class User implements UserDetails {
         this.lastName = lastName;
     }
 
-    public void setAuthorities(List<Authority> authorities) {
+    public void setAuthorities(List<AuthorityEntity> authorities) {
         this.authorities = authorities;
     }
 

@@ -1,6 +1,6 @@
 package com.ayush.product.productmanager.controller;
 
-import com.ayush.product.productmanager.entity.User;
+import com.ayush.product.productmanager.entity.UserEntity;
 import com.ayush.product.productmanager.dto.UserTokenStateDto;
 import com.ayush.product.productmanager.security.TokenHelper;
 import com.ayush.product.productmanager.security.auth.JwtAuthenticationRequest;
@@ -59,7 +59,7 @@ public class AuthenticationController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         // token creation
-        User user = (User)authentication.getPrincipal();
+        UserEntity user = (UserEntity)authentication.getPrincipal();
         String jws = tokenHelper.generateToken( user.getUsername());
         int expiresIn = tokenHelper.getExpiredIn();
         // Return the token

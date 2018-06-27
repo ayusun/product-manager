@@ -1,6 +1,6 @@
 package com.ayush.product.productmanager.service;
 
-import com.ayush.product.productmanager.entity.User;
+import com.ayush.product.productmanager.entity.UserEntity;
 import com.ayush.product.productmanager.repository.UserRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,7 +24,7 @@ public class CustomUserDetailServiceTest {
 
     @Test
     public void testLoadUserByUsernameReturnUser(){
-        User mockUser = new User();
+        UserEntity mockUser = new UserEntity();
         mockUser.setId(1L);
         mockUser.setFirstName("Test Name");
         mockUser.setLastName("Test2");

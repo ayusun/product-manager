@@ -1,6 +1,6 @@
 package com.ayush.product.productmanager.service;
 
-import com.ayush.product.productmanager.entity.User;
+import com.ayush.product.productmanager.entity.UserEntity;
 import com.ayush.product.productmanager.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +10,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-
+/**
+ * This file is specifically used for user authentications
+ */
 @Service
 @Slf4j
-@Profile("prod")
+@Profile("!dev")
 public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
@@ -21,7 +23,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
+        UserEntity user = userRepository.findByUsername(username);
         if (user == null) {
             throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
         } else {

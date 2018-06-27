@@ -5,13 +5,9 @@ import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 
-/**
- * Created by fan.jin on 2016-11-03.
- */
-
 @Entity
 @Table(name="AUTHORITY")
-public class Authority implements GrantedAuthority {
+public class AuthorityEntity implements GrantedAuthority {
 
     @Id
     @Column(name="id")
