@@ -1,10 +1,10 @@
 package com.ayush.product.productmanager.controller;
 
 import com.ayush.product.productmanager.service.ProductService;
-import com.ayush.product.productmanager.vo.GetProduct;
-import com.ayush.product.productmanager.vo.ProductIdVo;
-import com.ayush.product.productmanager.vo.ProductVO;
-import com.ayush.product.productmanager.vo.PutProductVo;
+import com.ayush.product.productmanager.dto.GetProductDto;
+import com.ayush.product.productmanager.dto.ProductIdDto;
+import com.ayush.product.productmanager.dto.ProductDto;
+import com.ayush.product.productmanager.dto.PutProductDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,10 +21,10 @@ public class ProductController {
     private final ProductService productService;
 
     @PutMapping(value = "/")
-    public ResponseEntity createProduct(@RequestBody PutProductVo createProductEvent){
-        List<ProductVO> products = createProductEvent.getProducts();
+    public ResponseEntity createProduct(@RequestBody PutProductDto createProductEvent){
+        List<ProductDto> products = createProductEvent.getProducts();
         try{
-            List<ProductVO> dtos = productService.createProducts(products);
+            List<ProductDto> dtos = productService.createProducts(products);
             return ResponseEntity.ok(dtos);
         }catch(Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -32,11 +32,11 @@ public class ProductController {
     }
 
     @PostMapping(value = "/")
-    public ResponseEntity getProducts(@RequestBody GetProduct getProductEvent){
-        List<ProductIdVo> voIds = getProductEvent.getProducts();
+    public ResponseEntity getProducts(@RequestBody GetProductDto getProductEvent){
+        List<ProductIdDto> voIds = getProductEvent.getProducts();
 
         try{
-            List<ProductVO> dtos = productService.getProducts(voIds);
+            List<ProductDto> dtos = productService.getProducts(voIds);
             return ResponseEntity.ok(dtos);
 
         }catch(Exception e){

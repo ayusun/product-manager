@@ -17,7 +17,7 @@ import static org.mockito.Mockito.when;
 public class TokenHelperTest{
 
     @Mock
-    private SecurityProperty securityProperty;
+    private SecurityPropertyContext securityProperty;
 
     @InjectMocks
     private TokenHelper tokenHelper;

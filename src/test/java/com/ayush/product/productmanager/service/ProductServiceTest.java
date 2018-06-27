@@ -2,8 +2,8 @@ package com.ayush.product.productmanager.service;
 
 import com.ayush.product.productmanager.entity.ProductEntity;
 import com.ayush.product.productmanager.repository.ProductDao;
-import com.ayush.product.productmanager.vo.ProductIdVo;
-import com.ayush.product.productmanager.vo.ProductVO;
+import com.ayush.product.productmanager.dto.ProductIdDto;
+import com.ayush.product.productmanager.dto.ProductDto;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,25 +30,25 @@ public class ProductServiceTest {
     @InjectMocks
     private ProductServiceImpl productService;
 
-    List<ProductVO> products;
-    ProductVO vo1;
-    ProductVO vo2;
+    List<ProductDto> products;
+    ProductDto vo1;
+    ProductDto vo2;
 
     ProductEntity entity1;
     ProductEntity entity2;
     List<ProductEntity> entities;
 
-    ProductIdVo voId1;
-    ProductIdVo voId2;
+    ProductIdDto voId1;
+    ProductIdDto voId2;
 
     private void setupProducts() {
-        vo1 = new ProductVO();
+        vo1 = new ProductDto();
         vo1.setId(1);
         vo1.setName("Test1");
         vo1.setQuantity(1);
         vo1.setSale_amount(new BigDecimal(500));
 
-        vo2 = new ProductVO();
+        vo2 = new ProductDto();
         vo2.setId(2);
         vo2.setName("Test2");
         vo2.setQuantity(5);
@@ -66,9 +66,9 @@ public class ProductServiceTest {
         entity2.setQuantity(5);
         entity2.setSaleAmount(new BigDecimal(200));
 
-        voId1 = new ProductIdVo();
+        voId1 = new ProductIdDto();
         voId1.setId(1);
-        voId2 = new ProductIdVo();
+        voId2 = new ProductIdDto();
         voId2.setId(2);
 
     }
@@ -83,7 +83,7 @@ public class ProductServiceTest {
     @Test
     public void testCreateProduct() {
         when(productDao.saveAll(anyList())).thenReturn(entities);
-        List<ProductVO> insertedProducts = productService.createProducts(products);
+        List<ProductDto> insertedProducts = productService.createProducts(products);
         verify(productDao, times(1)).saveAll(anyList());
         assertEquals(insertedProducts, products);
     }
@@ -92,7 +92,7 @@ public class ProductServiceTest {
     public void testGetProducts(){
         List<Long> idList = Arrays.asList(1L, 2L);
         when(productDao.findAllById(idList)).thenReturn(entities);
-        List<ProductVO> foundProducts = productService.getProducts(Arrays.asList(voId1, voId2));
+        List<ProductDto> foundProducts = productService.getProducts(Arrays.asList(voId1, voId2));
         verify(productDao, times(1)).findAllById(anyList());
         assertEquals(foundProducts, products);
 

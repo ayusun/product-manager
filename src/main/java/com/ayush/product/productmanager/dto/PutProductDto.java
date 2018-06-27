@@ -1,4 +1,4 @@
-package com.ayush.product.productmanager.vo;
+package com.ayush.product.productmanager.dto;
 
 import lombok.Data;
 
@@ -6,11 +6,11 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-public class GetProduct {
+public class PutProductDto {
 
     private String id;
 
     private Date timestamp;
 
-    private List<ProductIdVo> products;
+    private List<ProductDto> products;
 }

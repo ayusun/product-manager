@@ -13,11 +13,16 @@ import javax.servlet.http.HttpServletRequest;
 import java.time.Instant;
 import java.util.Date;
 
+/**
+ * A helper class that provides various utility functions that are related to
+ * tokens
+ * @author ayush
+ */
 @Component
 public class TokenHelper {
 
     @Autowired
-    private SecurityProperty securityProperty;
+    private SecurityPropertyContext securityProperty;
 
     static final String AUDIENCE_UNKNOWN = "unknown";
     public static final String BEARER = "Bearer ";

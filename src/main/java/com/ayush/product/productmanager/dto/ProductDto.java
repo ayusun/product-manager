@@ -1,11 +1,11 @@
-package com.ayush.product.productmanager.vo;
+package com.ayush.product.productmanager.dto;
 
 import lombok.Data;
 
 import java.math.BigDecimal;
 
 @Data
-public class ProductVO {
+public class ProductDto {
 
     private long id;
     private String name;

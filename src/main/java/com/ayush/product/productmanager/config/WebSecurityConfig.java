@@ -22,7 +22,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 
-
+/**
+ * This Configuration should be used for production. To Activate it set env variables of
+ * PROFILE_ACTIVE=prod
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)

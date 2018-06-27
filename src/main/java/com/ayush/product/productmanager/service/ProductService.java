@@ -1,8 +1,8 @@
 package com.ayush.product.productmanager.service;
 
 import com.ayush.product.productmanager.entity.ProductEntity;
-import com.ayush.product.productmanager.vo.ProductIdVo;
-import com.ayush.product.productmanager.vo.ProductVO;
+import com.ayush.product.productmanager.dto.ProductIdDto;
+import com.ayush.product.productmanager.dto.ProductDto;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public interface ProductService {
      * @param products
      * @return
      */
-    List<ProductVO> createProducts(List<ProductVO> products);
+    List<ProductDto> createProducts(List<ProductDto> products);
 
     /**
      * Given the list of ids of the product, Fetch the information for each of them.
@@ -33,5 +33,5 @@ public interface ProductService {
      * @param ids
      * @return
      */
-    List<ProductVO> getProducts(List<ProductIdVo> ids);
+    List<ProductDto> getProducts(List<ProductIdDto> ids);
 }

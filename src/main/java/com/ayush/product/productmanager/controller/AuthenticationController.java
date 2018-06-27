@@ -1,7 +1,7 @@
 package com.ayush.product.productmanager.controller;
 
 import com.ayush.product.productmanager.entity.User;
-import com.ayush.product.productmanager.entity.UserTokenState;
+import com.ayush.product.productmanager.dto.UserTokenStateDto;
 import com.ayush.product.productmanager.security.TokenHelper;
 import com.ayush.product.productmanager.security.auth.JwtAuthenticationRequest;
 import com.ayush.product.productmanager.service.CustomUserDetailsService;
@@ -63,7 +63,7 @@ public class AuthenticationController {
         String jws = tokenHelper.generateToken( user.getUsername());
         int expiresIn = tokenHelper.getExpiredIn();
         // Return the token
-        return ResponseEntity.ok(new UserTokenState(jws, expiresIn));
+        return ResponseEntity.ok(new UserTokenStateDto(jws, expiresIn));
     }
 
     @RequestMapping(value = "/refresh", method = RequestMethod.POST)
@@ -81,10 +81,10 @@ public class AuthenticationController {
             String refreshedToken = tokenHelper.refreshToken(authToken);
             int expiresIn = tokenHelper.getExpiredIn();
 
-            return ResponseEntity.ok(new UserTokenState(refreshedToken, expiresIn));
+            return ResponseEntity.ok(new UserTokenStateDto(refreshedToken, expiresIn));
         } else {
-            UserTokenState userTokenState = new UserTokenState();
-            return ResponseEntity.accepted().body(userTokenState);
+            UserTokenStateDto userTokenStateDto = new UserTokenStateDto();
+            return ResponseEntity.accepted().body(userTokenStateDto);
         }
     }
 }

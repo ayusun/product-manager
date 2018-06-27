@@ -3,8 +3,8 @@ package com.ayush.product.productmanager.service;
 import com.ayush.product.productmanager.entity.ProductEntity;
 import com.ayush.product.productmanager.mapper.ProductMapper;
 import com.ayush.product.productmanager.repository.ProductDao;
-import com.ayush.product.productmanager.vo.ProductIdVo;
-import com.ayush.product.productmanager.vo.ProductVO;
+import com.ayush.product.productmanager.dto.ProductIdDto;
+import com.ayush.product.productmanager.dto.ProductDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,19 +25,19 @@ public class ProductServiceImpl implements  ProductService {
     }
 
     @Override
-    public List<ProductVO> createProducts(List<ProductVO> products) {
+    public List<ProductDto> createProducts(List<ProductDto> products) {
         List<ProductEntity> convertedEntities = ProductMapper.convertproductVoListToEntityList(products);
         List<ProductEntity> entities = productDao.saveAll(convertedEntities);
-        List<ProductVO> dtos = ProductMapper.convertProductEntityListToProductVoList(entities);
+        List<ProductDto> dtos = ProductMapper.convertProductEntityListToProductVoList(entities);
 
         return dtos;
     }
 
     @Override
-    public List<ProductVO> getProducts(List<ProductIdVo> voIds) {
+    public List<ProductDto> getProducts(List<ProductIdDto> voIds) {
         List<Long> ids = ProductMapper.convertProductIdVoListToIdList(voIds);
         List<ProductEntity> entities = productDao.findAllById(ids);
-        List<ProductVO> dtos = ProductMapper.convertProductEntityListToProductVoList(entities);
+        List<ProductDto> dtos = ProductMapper.convertProductEntityListToProductVoList(entities);
         return dtos;
     }
 }

@@ -1,6 +1,7 @@
 package com.ayush.product.productmanager.security.auth;
 
 import com.ayush.product.productmanager.security.TokenHelper;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,10 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
+/**
+ * Filter that will Authenticate the request.
+ */
+@Slf4j
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
-
-    private final Log logger = LogFactory.getLog(this.getClass());
 
     private TokenHelper tokenHelper;
 
