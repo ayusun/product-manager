@@ -74,7 +74,12 @@ Dev Mode Or Production Mode
 
 There are two Profiles in which service can run.
 1) Dev Mode : In this mode, no authentication is required
-2) Prod Mode: In this mode, first we have to authenticate by providing username/password. This mode uses JWT.
+2) Prod Mode: In this mode, first we have to authenticate by providing username/password. This mode uses JWT. The behaviour of the token can be controlled via following parameters : 
+`-Djwt.header=authorization -Djwt.expires_in=300 -Djwt.secret=queenvictoria`. These parameters are present in `application.properties` also.
+a) jwt.header := The Key Name by which token will be present in the header
+b) jwt.expires_in := time in secs.
+c) jwt.secret = The Secret Key
+
 
 Steps for code execution
 
