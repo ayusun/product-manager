@@ -85,7 +85,7 @@ Steps for code execution
 DevMode
 To Run in Dev Mode
 -------------------
-mvn spring-boot:run -Dspring.datasource.url=jdbc:postgresql://localhost:5432/product-manager -Dspring.datasource.username=postgresusername -Dspring.datasource.password=passwd
+mvn spring-boot:run -Dspring.datasource.url=jdbc:postgresql://localhost:5432/product-manager -Dspring.datasource.username=`<postgresusername>` -Dspring.datasource.password=`<passwd>`
 
 ProductionMode
 To Run in Production Mode
